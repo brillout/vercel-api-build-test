@@ -1,5 +1,6 @@
 {
   "scripts": {
+    "build": "echo 'aaaaaaaaaaaaaaaaabbbbbbbbbcccccccc'",
     "vercel-build": "node ./scripts/createTempFile.js"
   },
   "dependencies": {
