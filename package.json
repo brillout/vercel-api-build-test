@@ -1,0 +1,14 @@
+{
+  "name": "api-build-test",
+  "version": "1.0.0",
+  "license": "MIT",
+  "source": "source/home.js",
+  "main": "api/home.js",
+  "scripts": {
+    "build": "echo 'build'",
+    "vercel-build": "node ./scripts/createTempFile.js"
+  },
+  "dependencies": {
+    "mkdirp": "^1.0.4"
+  }
+}
