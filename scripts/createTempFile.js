@@ -15,12 +15,14 @@ mkdirp(helpersPath).then(() => {
   );
 });
 
-const distPath = path.join(__dirname, "..", "public");
+const distPath = path.join(__dirname, "..", "dist");
+const distClientPath = path.join(__dirname, "..", "dist", "client");
 
-mkdirp(distPath).then(() => {
+mkdirp(distPath).then(async () => {
+  await mkdirp(distClientPath);
   fs.writeFile(
-    path.join(distPath, "index.html"),
-    `Some static HTML`,
+    path.join(distClientPath, "index.html"),
+    `Some static HTML 2!!!!`,
     (err) => {
       if (err) throw err;
       console.log("Build time static files created successfully!");
