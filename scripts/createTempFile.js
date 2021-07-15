@@ -2,7 +2,7 @@ const fs = require("fs");
 const path = require("path");
 const mkdirp = require("mkdirp");
 
-const buildNumber = 4;
+const buildNumber = 5;
 
 const distPath = path.join(__dirname, "..", "dist");
 const distServerPath = path.join(distPath, "server");
