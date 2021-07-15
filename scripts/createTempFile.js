@@ -2,29 +2,29 @@ const fs = require("fs");
 const path = require("path");
 const mkdirp = require("mkdirp");
 
+const buildNumber = 4;
 
 const distPath = path.join(__dirname, "..", "dist");
-const distClientPath = path.join(__dirname, "..", "dist", "client");
-const helpersPath = path.join(__dirname, "..", "dist", "server");
+const distServerPath = path.join(distPath, "server");
+const distClientPath = path.join(distPath, "client");
+const assetsPath = path.join(distClientPath, 'assets');
 
-mkdirp(distPath).then(async () => {
+(async () => {
+  await mkdirp(distPath);
   await mkdirp(distClientPath);
-  fs.writeFile(
+  fs.writeFileSync(
     path.join(distClientPath, "index.html"),
-    `Some static HTML 333333   33!!!`,
-    (err) => {
-      if (err) throw err;
-      console.log("Build time static files created successfully!");
-    }
+    `<html><body>Some static HTML [${buildNumber}]. <script src="/assets/someFile.js"></script></body></html>`
   );
-  mkdirp(helpersPath).then(() => {
-    fs.writeFile(
-      path.join(helpersPath, "custom-function.js"),
-      `module.exports = (msg)=>{return \`hello \${String(msg)} 3333 33!!! it works.\`}`,
-      (err) => {
-        if (err) throw err;
-        console.log("Build time serverless function created successfully!");
-      }
-    );
-  });
-});
+  await mkdirp(assetsPath);
+  fs.writeFileSync(
+    path.join(assetsPath, "someFile.js"),
+    `console.log("Yep [${buildNumber}]")`
+  );
+
+  await mkdirp(distServerPath);
+  fs.writeFileSync(
+    path.join(distServerPath, "custom-function.js"),
+    `module.exports = (msg)=>{return \`hello \${String(msg)} [${buildNumber}].\`}`
+  );
+})();
