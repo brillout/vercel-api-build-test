@@ -1,6 +1,6 @@
 "use strict";
 
-const message = require("../api_helpers/custom-function");
+const message = require("../dist/server/custom-function");
 
 function handler(req, res) {
   let { name } = req.query;
